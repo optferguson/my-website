@@ -24,10 +24,9 @@
             --diamond: #b9f2ff;
         }
 
-        /* --- Mockup & Page Body Styles --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #2a2a2a; /* Neutral page background */
+            background-color: #2a2a2a;
             color: var(--primary-text);
             margin: 0;
             display: flex;
@@ -41,9 +40,9 @@
         .mobile-mockup {
             width: 100%;
             height: 100%;
-            max-width: 430px; /* Max width of a large phone */
-            max-height: 932px; /* Max height of a large phone */
-            background-color: #1c1c1e; /* Phone bezel color */
+            max-width: 430px;
+            max-height: 932px;
+            background-color: #1c1c1e;
             border-radius: 50px;
             border: 10px solid #000000;
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
@@ -51,13 +50,6 @@
             display: flex;
             padding: 5px;
             box-sizing: border-box;
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 0; }
-            .mobile-mockup { width: 100vw; height: 100vh; max-width: none; max-height: none; border-radius: 0; border: none; padding: 0; }
-            .mobile-mockup .screen { border-radius: 0; }
-            .mobile-mockup .notch { top: 0; }
         }
 
         .mobile-mockup .screen {
@@ -87,150 +79,86 @@
             padding: 16px;
             box-sizing: border-box;
         }
-
-        .wallet-container::-webkit-scrollbar { width: 5px; }
-        .wallet-container::-webkit-scrollbar-track { background: transparent; }
-        .wallet-container::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+        .wallet-container::-webkit-scrollbar { display: none; }
         
-        .top-header {
-            padding: 10px 0;
-        }
-
-        .menu-button {
-            background: none;
-            border: none;
-            color: var(--primary-text);
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .top-bar-box {
-            background-color: var(--background-dark);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border-color);
-        }
-
+        .top-header { padding: 10px 0; }
+        .menu-button { background: none; border: none; color: var(--primary-text); font-size: 22px; cursor: pointer; }
+        .top-bar-box { background-color: var(--background-dark); padding: 20px; border-radius: 12px; text-align: center; margin-top: 10px; margin-bottom: 24px; border: 1px solid var(--border-color); }
         .top-balance-amount { font-size: 28px; font-weight: 600; margin: 0 0 8px 0; color: var(--primary-text); }
         .top-bonus-balance { font-size: 16px; color: var(--secondary-text); margin-bottom: 16px; cursor: pointer; }
         .top-buttons-container { display: flex; justify-content: center; gap: 12px; }
         .top-action-btn { background-color: var(--surface-light); color: var(--primary-text); border: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; flex-grow: 1; }
-
         .assets-list { margin-bottom: 32px; display: flex; flex-direction: column; }
-        .asset-item { background-color: transparent; border: none; border-bottom: 1px solid var(--border-color); width: 100%; font: inherit; color: inherit; text-align: left; padding: 16px 0; display: flex; align-items: center; cursor: pointer; gap: 16px; }
+        .asset-item { background: transparent; border: none; border-bottom: 1px solid var(--border-color); width: 100%; font: inherit; color: inherit; text-align: left; padding: 16px 0; display: flex; align-items: center; cursor: pointer; gap: 16px; }
         .asset-item:last-child { border-bottom: none; }
         .asset-icon { font-size: 18px; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; background-color: var(--surface-dark); border-radius: 50%; flex-shrink: 0; }
         .asset-info { flex-grow: 1; }
         .asset-name { font-size: 18px; font-weight: 500; }
         .asset-balance { font-size: 14px; color: var(--secondary-text); margin-top: 4px; }
-        .asset-item .fa-chevron-right { color: var(--secondary-text); font-size: 14px; margin-left: auto; padding-left: 16px; }
-        
-        .watchlist-section { margin-top: 24px; }
-        .filter-tabs { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-        .filter-tabs button { background-color: var(--surface-dark); border: none; color: var(--primary-text); font-size: 14px; font-weight: bold; padding: 10px 16px; border-radius: 20px; cursor: pointer; }
-        .filter-tabs button.active { background-color: var(--surface-light); }
-        
-        .coin-list { list-style: none; padding: 0; }
-        .coin-item { display: flex; align-items: center; padding: 16px 0; gap: 12px; }
-        .coin-logo { width: 40px; height: 40px; flex-shrink: 0; }
-        .coin-info { flex-grow: 1; min-width: 0; }
-        .coin-name { font-size: 18px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .coin-symbol { font-size: 14px; color: var(--secondary-text); }
-        .coin-sparkline { width: 50px; height: 20px; margin: 0 8px; flex-shrink: 0; }
-        .coin-price-info { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
-        .coin-price { font-size: 16px; font-weight: bold; }
-        .coin-change { font-size: 14px; margin-top: 4px; }
+        .asset-item .fa-chevron-right { color: var(--secondary-text); font-size: 14px; margin-left: auto; }
         
         .manage-button { width: 100%; background-color: var(--surface-light); color: var(--primary-text); border: none; padding: 16px; font-size: 16px; font-weight: bold; border-radius: 8px; margin-top: 16px; cursor: pointer; }
 
-        .market-overview { margin-top: 40px; }
-        .market-overview h2 { font-size: 20px; margin-bottom: 16px; }
-        .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .overview-card { background-color: var(--surface-dark); padding: 16px; border-radius: 12px; }
-        .overview-card .title { font-size: 14px; color: var(--secondary-text); margin-bottom: 8px; }
-        .overview-card .value { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
-        .overview-card .change { font-size: 14px; }
-        
         .positive { color: var(--positive-green); }
         .negative { color: var(--negative-red); }
 
+        /* --- MODAL STYLES --- */
         .modal { display: none; position: absolute; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; padding: 16px; box-sizing: border-box; }
         .modal.show { display: flex; }
-        .modal-content { background-color: var(--surface-dark); padding: 20px; border-radius: 16px; width: 100%; max-width: 450px; display: flex; flex-direction: column; position: relative; }
-        .modal-content.scrollable { height: 70%; }
+        .modal-content { background-color: var(--surface-dark); padding: 20px; border-radius: 16px; width: 100%; max-width: 450px; display: flex; flex-direction: column; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .modal-header h2 { margin: 0; font-size: 20px; }
         .modal-close-btn { font-size: 28px; font-weight: bold; cursor: pointer; color: var(--secondary-text); position: absolute; top: 10px; right: 20px; }
-        .modal-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; }
-        .modal-list li { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+        .modal-list { list-style: none; padding: 0; margin: 0; }
+        .modal-list li { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); gap: 16px; }
         .modal-list li:last-child { border-bottom: none; }
-        .modal-list img { width: 32px; height: 32px; margin-right: 12px; }
         .modal-list .item-info { flex-grow: 1; }
         .modal-list .item-name { font-weight: bold; }
-        .modal-list .item-symbol { color: var(--secondary-text); font-size: 14px; }
-        .modal-list .item-price { font-weight: bold; font-size: 16px; }
         
-        #bonus-prompt, .modal-warning { background-color: var(--warning-bg); color: var(--warning-text); padding: 12px; border-radius: 8px; font-size: 14px; line-height: 1.4; margin-bottom: 20px; border: 1px solid var(--warning-text); }
+        /* Slide-in from Left (Sidebar) */
+        .modal.sidebar { justify-content: flex-start; align-items: flex-start; background-color: rgba(0,0,0,0.5); }
+        .modal.sidebar .modal-content { width: 75%; max-width: 350px; height: 100%; border-radius: 0; transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+        .modal.sidebar.show .modal-content { transform: translateX(0); }
+
+        /* Slide-in from Right */
+        .modal.slide-from-right { justify-content: flex-end; align-items: flex-start; }
+        .modal.slide-from-right .modal-content { width: 75%; max-width: 350px; height: 100%; border-radius: 0; transform: translateX(100%); transition: transform 0.3s ease-in-out; }
+        .modal.slide-from-right.show .modal-content { transform: translateX(0); }
+
+        /* Slide-in from Top */
+        .modal.slide-from-top { justify-content: center; align-items: flex-start; }
+        .modal.slide-from-top .modal-content { transform: translateY(-100%); transition: transform 0.3s ease-in-out; margin-top: 20px; }
+        .modal.slide-from-top.show .modal-content { transform: translateY(0); }
+        
+        .sidebar-list-item .item-info { padding-left: 16px; }
+        .sidebar-list-item .item-name { font-size: 14px; word-break: break-all; }
+        .transaction-view .message, .transaction-view .transaction-item { padding: 20px; text-align: center; font-size: 16px; }
+
+        .vip-icon.bronze { color: var(--bronze); } .vip-icon.silver { color: var(--silver); } .vip-icon.gold { color: var(--gold); } .vip-icon.platinum { color: var(--platinum); } .vip-icon.diamond { color: var(--diamond); }
+        .vip-list-item .item-info { font-size: 14px; }
+
+        .modal-warning { background-color: var(--warning-bg); color: var(--warning-text); padding: 12px; border-radius: 8px; font-size: 14px; line-height: 1.4; margin-bottom: 20px; border: 1px solid var(--warning-text); }
         .deposit-info { margin-top: 16px; font-size: 16px; line-height: 1.5; }
         .deposit-address-container { display: flex; align-items: center; gap: 12px; background-color: var(--background-dark); padding: 12px; border-radius: 8px; margin-top: 8px; flex-wrap: wrap; }
-        #btc-address, #eth-address { word-break: break-all; flex: 1; }
-        #copy-btn, #copy-eth-btn { background-color: var(--surface-light); color: var(--primary-text); border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .address-text { word-break: break-all; flex: 1; }
+        .copy-btn { background-color: var(--surface-light); color: var(--primary-text); border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         
-        .option-item { cursor: pointer; gap: 16px; }
-        .option-item .asset-icon, .manage-asset-item .asset-icon { background-color: var(--background-dark); }
-        .option-item .item-name { font-weight: 500; font-size: 16px; }
-        .option-item .fa-chevron-right { color: var(--secondary-text); font-size: 14px; margin-left: auto; padding-left: 16px; }
+        #paypal-generator .fa-spinner { font-size: 24px; animation: spin 1.5s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        #btc-withdraw-address { width: 100%; background-color: var(--background-dark); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; font-size: 16px; color: var(--primary-text); box-sizing: border-box; margin-bottom: 16px; }
-        #confirm-withdraw-btn { width: 100%; background-color: var(--positive-green); color: var(--primary-text); border: none; padding: 16px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
-        #confirm-withdraw-btn:disabled { opacity: 0.5; cursor: not-allowed; background-color: var(--surface-light); }
-        #withdraw-success-prompt { color: var(--positive-green); margin-top: 16px; text-align: center; font-weight: bold; }
-
-        .modal.sidebar { justify-content: flex-start; align-items: flex-start; background-color: rgba(0,0,0,0.5); }
-        .modal.sidebar .modal-content { width: 75%; max-width: 350px; height: 100%; border-radius: 0; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 50px; }
-        .modal.sidebar.show .modal-content { transform: translateX(0); }
-        .sidebar-list-item { cursor: pointer; }
-        .sidebar-list-item .item-info { padding-left: 16px; }
-        /* MODIFICATION: Style for email text */
-        .sidebar-list-item .item-name { font-size: 14px; word-break: break-all; }
-
-        .vip-icon.bronze { color: var(--bronze); }
-        .vip-icon.silver { color: var(--silver); }
-        .vip-icon.gold { color: var(--gold); }
-        .vip-icon.platinum { color: var(--platinum); }
-        .vip-icon.diamond { color: var(--diamond); }
-        .vip-list-item .item-name { font-size: 14px; }
+        .form-input { width: 100%; background-color: var(--background-dark); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; font-size: 16px; color: var(--primary-text); box-sizing: border-box; margin-bottom: 16px; }
+        .form-prompt { display: none; margin-bottom: 16px; font-size: 14px; }
         
-        .transaction-view .message { padding: 20px; text-align: center; }
-
-        /* Greeting Toast Styles */
-        .greeting-toast {
-            position: fixed;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(44, 44, 46, 0.9);
-            color: var(--primary-text);
-            padding: 12px 24px;
-            border-radius: 20px;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
-            pointer-events: none;
-            font-size: 16px;
-            font-weight: 500;
-            max-width: 90%;
-            text-align: center;
-        }
+        .greeting-toast { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); background-color: rgba(44, 44, 46, 0.9); color: var(--primary-text); padding: 12px 24px; border-radius: 20px; z-index: 2000; opacity: 0; transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out; pointer-events: none; font-size: 16px; font-weight: 500; text-align: center; }
         .greeting-toast.show { top: 85px; opacity: 1; }
 
         @media (max-width: 480px) {
+            body { padding: 0; visibility: hidden; }
+            .mobile-mockup { width: 100vw; height: 100vh; max-width: none; max-height: none; border-radius: 0; border: none; padding: 0; }
+            .mobile-mockup .screen { border-radius: 0; }
+            .mobile-mockup .notch { top: 0; }
             .greeting-toast { top: 20px; }
             .greeting-toast.show { top: 40px; }
-            body { visibility: hidden; } /* Hide body until script runs */
         }
     </style>
 </head>
@@ -253,163 +181,292 @@
                         <button id="top-withdraw-btn" class="top-action-btn">Withdraw</button>
                         <button id="top-bonus-btn" class="top-action-btn">JOIN VIP</button>
                     </div>
-                    <div id="bonus-prompt" style="display: none; margin-top: 16px; margin-bottom: 0;"></div>
                 </div>
                 
                 <div class="assets-list">
-                    <button id="crypto-asset-btn" class="asset-item"><div class="asset-icon"><i class="fa-solid fa-chart-line"></i></div><div class="asset-info"><div class="asset-name">Crypto</div><div class="asset-balance">$0.00</div></div><i class="fa-solid fa-chevron-right"></i></button>
-                    <button id="cash-asset-btn" class="asset-item"><div class="asset-icon"><i class="fa-solid fa-dollar-sign"></i></div><div class="asset-info"><div class="asset-name">Cash</div><div class="asset-balance">$0.00</div></div><i class="fa-solid fa-chevron-right"></i></button>
+                    <button id="crypto-asset-btn" class="asset-item">
+                        <div class="asset-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="asset-info"><div class="asset-name">Crypto</div><div class="asset-balance">$0.00</div></div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button id="cash-asset-btn" class="asset-item">
+                        <div class="asset-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                        <div class="asset-info"><div class="asset-name">Cash</div><div class="asset-balance">$0.00</div></div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
         
                 <hr style="border-color: var(--border-color); border-style: solid; margin: 32px 0;">
         
                 <section class="watchlist-section">
-                    <div class="filter-tabs">
-                        <button id="watchlist-btn" class="active">Watchlist</button>
-                        <button id="trending-btn">Trending</button>
-                        <button>Top gainers</button>
-                    </div>
-                    <ul class="coin-list"><li class="coin-item"><img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="BTC" class="coin-logo"><div class="coin-info"><div class="coin-name">Bitcoin</div><div class="coin-symbol">BTC</div></div><svg class="coin-sparkline" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg"><path d="M 0 20 L 10 15 L 20 18 L 30 12 L 40 15 L 50 22 L 60 18 L 70 10 L 80 15 L 90 12 L 100 8" stroke="#059669" fill="none" stroke-width="2"/></svg><div class="coin-price-info"><div class="coin-price" id="btc-price">--</div><div class="coin-change positive" id="btc-change">--</div></div></li></ul>
-                    <button id="manage-assets-btn" class="manage-button">Manage</button>
+                    <button id="manage-assets-btn" class="manage-button">Manage your assets</button>
                 </section>
-        
-                <section class="market-overview">
-                    <h2>Market overview</h2>
-                    <div class="overview-grid"><div class="overview-card"><div class="title">Market cap</div><div class="value" id="market-cap-value">$3.3T</div><div class="change" id="market-cap-change">--</div></div><div class="overview-card"><div class="title">Trade volume</div><div class="value" id="trade-volume-value">$172.3B</div><div class="change" id="trade-volume-change">--</div></div></div>
-                </section>
-                </div>
+            </div>
             
             <div id="sidebar-modal" class="modal sidebar">
                 <div class="modal-content">
-                    <span id="sidebar-close-btn" class="modal-close-btn">&times;</span>
+                    <span class="modal-close-btn">&times;</span>
                     <ul class="modal-list">
-                        <li class="sidebar-list-item asset-item">
-                            <div class="asset-icon"><i class="fa-solid fa-envelope"></i></div>
-                            <div class="item-info">
-                                <div id="sidebar-user-email" class="item-name"></div>
-                            </div>
-                        </li>
+                        <li class="sidebar-list-item asset-item"><div class="asset-icon"><i class="fa-solid fa-envelope"></i></div><div class="item-info"><div id="sidebar-user-email" class="item-name"></div></div></li>
                         <li id="view-pending-tx-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">View pending transaction</div></div></li>
                         <li id="view-successful-tx-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">View successful transaction</div></div></li>
-                        <li id="join-vip-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">JOIN VIP</div></div></li>
+                        <li id="sidebar-join-vip-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">JOIN VIP</div></div></li>
                         <li id="sidebar-manage-assets-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">Manage your assets</div></div></li>
-                        <li id="logout-btn" class="sidebar-list-item asset-item">
-                           <div class="item-info"><div class="item-name">Log Out</div></div>
-                        </li>
+                        <li id="logout-btn" class="sidebar-list-item asset-item"><div class="item-info"><div class="item-name">Log Out</div></div></li>
                     </ul>
                 </div>
             </div>
+            
+            <div id="pending-tx-modal" class="modal sidebar"><div class="modal-content transaction-view"><span class="modal-close-btn">&times;</span><h2>Pending Transactions</h2><p class="message">You have no pending transactions.</p></div></div>
+
+            <div id="successful-tx-modal" class="modal sidebar"><div class="modal-content transaction-view"><span class="modal-close-btn">&times;</span><h2>Successful Transactions</h2><p class="transaction-item">$300.00 - Welcome Bonus</p></div></div>
+            
+            <div id="join-vip-modal" class="modal sidebar">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Become a VIP</h2>
+                    <ul class="modal-list">
+                        <li class="vip-list-item"><i class="fas fa-star vip-icon bronze"></i><div class="item-info">Bronze: $30-$99 (up to 20%)</div></li>
+                        <li class="vip-list-item"><i class="fas fa-medal vip-icon silver"></i><div class="item-info">Silver: $100-$199 (up to 50%)</div></li>
+                        <li class="vip-list-item"><i class="fas fa-medal vip-icon gold"></i><div class="item-info">Gold: $200-$499 (up to 75%)</div></li>
+                        <li class="vip-list-item"><i class="fas fa-trophy vip-icon platinum"></i><div class="item-info">Platinum: $500-$1,000 (up to 100%)</div></li>
+                        <li class="vip-list-item"><i class="fas fa-gem vip-icon diamond"></i><div class="item-info">Diamond: $1,001-$5,000 (100% and x3)</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="manage-assets-modal" class="modal sidebar">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Manage your crypto assets</h2>
+                    <ul class="modal-list">
+                        <li><div class="asset-icon"><i class="fa-brands fa-bitcoin"></i></div><div class="item-info">Bitcoin (BTC)</div><span>$0.00</span></li>
+                        <li><div class="asset-icon"><i class="fa-brands fa-ethereum"></i></div><div class="item-info">Ethereum (ETH)</div><span>$0.00</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="deposit-chooser-modal" class="modal slide-from-top">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Deposit Options</h2>
+                    <ul class="modal-list">
+                        <li id="choose-crypto-deposit-btn" class="asset-item"><div class="asset-icon"><i class="fa-solid fa-chart-line"></i></div><div class="item-info">Crypto Deposit</div><i class="fa-solid fa-chevron-right"></i></li>
+                        <li id="choose-cash-deposit-btn" class="asset-item"><div class="asset-icon"><i class="fa-solid fa-dollar-sign"></i></div><div class="item-info">Cash Deposit</div><i class="fa-solid fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="crypto-deposit-modal" class="modal slide-from-right">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Choose Crypto</h2>
+                    <ul class="modal-list">
+                         <li id="select-btc-btn" class="asset-item"><div class="asset-icon"><i class="fa-brands fa-bitcoin"></i></div><div class="item-info">Deposit BTC</div><i class="fa-solid fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="btc-deposit-modal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>BTC Deposit Address</h2>
+                    <div class="modal-warning">Only send BTC to this address. Sending other coins may result in permanent loss.</div>
+                    <div class="deposit-info">
+                        <div class="deposit-address-container">
+                            <span class="address-text">1PWQLjJDTqypw7yZZqfRQeCk4mNWSRx8YY</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cash-deposit-modal" class="modal slide-from-right">
+                 <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Cash Deposit</h2>
+                    <ul class="modal-list">
+                         <li id="select-wire-btn" class="asset-item"><div class="asset-icon"><i class="fa-solid fa-building-columns"></i></div><div class="item-info">Wire Transfer</div><i class="fa-solid fa-chevron-right"></i></li>
+                         <li id="select-paypal-btn" class="asset-item"><div class="asset-icon"><i class="fa-brands fa-paypal"></i></div><div class="item-info">Generate Temporary PayPal</div><i class="fa-solid fa-chevron-right"></i></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="wire-transfer-modal" class="modal"><div class="modal-content"><span class="modal-close-btn">&times;</span><h2>Wire Transfer Details</h2><div class="deposit-info">Account Number:<div class="deposit-address-container"><span class="address-text">210144611341</span><button class="copy-btn">Copy</button></div></div><div class="deposit-info">Routing Number:<div class="deposit-address-container"><span class="address-text">101019644</span><button class="copy-btn">Copy</button></div></div></div></div>
+
+            <div id="paypal-modal" class="modal"><div class="modal-content" id="paypal-generator"><span class="modal-close-btn">&times;</span><h2>Generating PayPal Address</h2><div class="message" style="text-align: center; padding: 20px 0;"><i class="fas fa-spinner"></i></div></div></div>
+
+            <div id="withdraw-modal" class="modal slide-from-top">
+                <div class="modal-content">
+                    <span class="modal-close-btn">&times;</span><h2>Withdraw Funds</h2>
+                    <label>Enter your BTC wallet address</label>
+                    <input type="text" id="btc-withdraw-address" class="form-input" placeholder="BTC Address">
+                    <label>Amount (USD)</label>
+                    <input type="number" id="withdraw-amount" class="form-input" placeholder="Min: $10, Max: $10,000">
+                    <div id="withdraw-amount-prompt" class="form-prompt negative"></div>
+                    <div class="top-buttons-container">
+                        <button id="cancel-withdraw-btn" class="top-action-btn">Cancel</button>
+                        <button id="confirm-withdraw-btn" class="top-action-btn" disabled>Confirm</button>
+                    </div>
+                     <div id="withdraw-fail-prompt" class="form-prompt" style="text-align:center; margin-top: 16px; color: var(--warning-text);"></div>
+                </div>
+            </div>
+
+            <div id="copied-prompt" class="greeting-toast" style="background-color: var(--positive-green);">Copied!</div>
             </div>
     </div>
 
     <script>
-        // --- MODIFICATION: Dashboard Initialization and User Authentication ---
         document.addEventListener('DOMContentLoaded', () => {
             const loggedInUserString = sessionStorage.getItem('loggedInUser');
-            
-            // If no user is logged in, redirect to index.html
             if (!loggedInUserString) {
                 window.location.href = 'index.html';
-                return; // Stop script execution
+                return;
             }
-
-            // If user exists, make the page visible and run the setup
             document.body.style.visibility = 'visible';
             const loggedInUser = JSON.parse(loggedInUserString);
-            
             initializeDashboard(loggedInUser);
         });
 
-
         function initializeDashboard(user) {
-            // --- PAGE ELEMENTS ---
-            const btcPriceEl = document.getElementById('btc-price');
-            const btcChangeEl = document.getElementById('btc-change');
-            const marketCapValueEl = document.getElementById('market-cap-value');
-            const marketCapChangeEl = document.getElementById('market-cap-change');
-            const tradeVolumeValueEl = document.getElementById('trade-volume-value');
-            const tradeVolumeChangeEl = document.getElementById('trade-volume-change');
-            
-            // --- MODAL ELEMENTS ---
+            // --- Get All DOM Elements ---
             const allModals = document.querySelectorAll('.modal');
-            const sidebarModal = document.getElementById('sidebar-modal');
-            // ... (other modal elements are fine)
-
-            // --- BUTTON & INTERACTIVE ELEMENTS ---
             const menuBtn = document.getElementById('menu-btn');
-            const logoutBtn = document.getElementById('logout-btn'); // MODIFICATION: Get logout button
-
-            // --- MODIFICATION: Personalize UI ---
+            const logoutBtn = document.getElementById('logout-btn');
             const sidebarUserEmailEl = document.getElementById('sidebar-user-email');
-            if (sidebarUserEmailEl) {
-                sidebarUserEmailEl.textContent = user.email;
-            }
 
-            // --- GENERAL MODAL LOGIC ---
-            function closeAllModals() {
-                allModals.forEach(modal => modal.classList.remove('show'));
-            }
-            document.querySelectorAll('.modal-close-btn').forEach(button => {
-                button.addEventListener('click', closeAllModals);
-            });
-            allModals.forEach(modal => {
-                modal.addEventListener('click', (event) => {
-                    if(event.target === modal) closeAllModals();
-                });
-            });
-
-            // --- SIDEBAR & LOGOUT LOGIC ---
-            menuBtn.addEventListener('click', () => sidebarModal.classList.add('show'));
+            // Sidebar Buttons
+            const sidebarModal = document.getElementById('sidebar-modal');
+            const viewPendingTxBtn = document.getElementById('view-pending-tx-btn');
+            const viewSuccessfulTxBtn = document.getElementById('view-successful-tx-btn');
+            const sidebarJoinVipBtn = document.getElementById('sidebar-join-vip-btn');
+            const sidebarManageAssetsBtn = document.getElementById('sidebar-manage-assets-btn');
             
-            // MODIFICATION: Add logout event listener
+            // Top Bar Buttons
+            const topDepositBtn = document.getElementById('top-deposit-btn');
+            const topWithdrawBtn = document.getElementById('top-withdraw-btn');
+            const topBonusBtn = document.getElementById('top-bonus-btn');
+
+            // Asset List Buttons
+            const cryptoAssetBtn = document.getElementById('crypto-asset-btn');
+            const cashAssetBtn = document.getElementById('cash-asset-btn');
+            const manageAssetsBtn = document.getElementById('manage-assets-btn');
+
+            // Modal & Modal Buttons
+            const pendingTxModal = document.getElementById('pending-tx-modal');
+            const successfulTxModal = document.getElementById('successful-tx-modal');
+            const joinVipModal = document.getElementById('join-vip-modal');
+            const manageAssetsModal = document.getElementById('manage-assets-modal');
+            const depositChooserModal = document.getElementById('deposit-chooser-modal');
+            const chooseCryptoDepositBtn = document.getElementById('choose-crypto-deposit-btn');
+            const chooseCashDepositBtn = document.getElementById('choose-cash-deposit-btn');
+            const cryptoDepositModal = document.getElementById('crypto-deposit-modal');
+            const cashDepositModal = document.getElementById('cash-deposit-modal');
+            const selectBtcBtn = document.getElementById('select-btc-btn');
+            const btcDepositModal = document.getElementById('btc-deposit-modal');
+            const selectWireBtn = document.getElementById('select-wire-btn');
+            const wireTransferModal = document.getElementById('wire-transfer-modal');
+            const selectPaypalBtn = document.getElementById('select-paypal-btn');
+            const paypalModal = document.getElementById('paypal-modal');
+            const withdrawModal = document.getElementById('withdraw-modal');
+            const confirmWithdrawBtn = document.getElementById('confirm-withdraw-btn');
+            const cancelWithdrawBtn = document.getElementById('cancel-withdraw-btn');
+            const withdrawAmountInput = document.getElementById('withdraw-amount');
+            const withdrawAmountPrompt = document.getElementById('withdraw-amount-prompt');
+            const withdrawFailPrompt = document.getElementById('withdraw-fail-prompt');
+            
+            // --- Modal Control Functions ---
+            const openModal = (modal) => {
+                closeAllModals();
+                modal.classList.add('show');
+            };
+            const closeAllModals = () => allModals.forEach(m => m.classList.remove('show'));
+
+            // Generic Close Button Listeners
+            document.querySelectorAll('.modal-close-btn').forEach(btn => btn.addEventListener('click', closeAllModals));
+
+            // --- Personalize UI ---
+            if (sidebarUserEmailEl) sidebarUserEmailEl.textContent = user.email;
+            
+            // --- Main Menu and Sidebar Logic ---
+            menuBtn.addEventListener('click', () => openModal(sidebarModal));
             logoutBtn.addEventListener('click', () => {
                 sessionStorage.removeItem('loggedInUser');
                 window.location.href = 'index.html';
             });
-
-            // --- API & UPDATE FUNCTIONS ---
-            async function fetchBitcoinPrice() { /* ... function code ... */ }
-            function updateMarketMetrics() { /* ... function code ... */ }
-            async function fetchWatchlistData() { /* ... function code ... */ }
-            async function fetchTrendingData() { /* ... function code ... */ }
-            function formatLargeNumber(num) { /* ... function code ... */ }
+            viewPendingTxBtn.addEventListener('click', () => openModal(pendingTxModal));
+            viewSuccessfulTxBtn.addEventListener('click', () => openModal(successfulTxModal));
+            const openVipModal = () => openModal(joinVipModal);
+            sidebarJoinVipBtn.addEventListener('click', openVipModal);
+            topBonusBtn.addEventListener('click', openVipModal);
+            const openManageAssetsModal = () => openModal(manageAssetsModal);
+            sidebarManageAssetsBtn.addEventListener('click', openManageAssetsModal);
+            manageAssetsBtn.addEventListener('click', openManageAssetsModal);
             
-            // All other event listeners for modals, deposits, etc. can remain here
-            // ...
+            // --- Deposit Flow ---
+            const openDepositChooser = () => openModal(depositChooserModal);
+            topDepositBtn.addEventListener('click', openDepositChooser);
+            cryptoAssetBtn.addEventListener('click', () => openModal(cryptoDepositModal));
+            cashAssetBtn.addEventListener('click', () => openModal(cashDepositModal));
+            chooseCryptoDepositBtn.addEventListener('click', () => openModal(cryptoDepositModal));
+            chooseCashDepositBtn.addEventListener('click', () => openModal(cashDepositModal));
+            selectBtcBtn.addEventListener('click', () => openModal(btcDepositModal));
+            selectWireBtn.addEventListener('click', () => openModal(wireTransferModal));
 
-            // --- MODIFICATION: GREETING MESSAGE LOGIC ---
+            // --- PayPal Generation ---
+            selectPaypalBtn.addEventListener('click', () => {
+                openModal(paypalModal);
+                const generatorEl = document.getElementById('paypal-generator');
+                generatorEl.innerHTML = `<span class="modal-close-btn">&times;</span><h2>Generating PayPal Address</h2><div class="message" style="text-align: center; padding: 20px 0;"><i class="fas fa-spinner"></i></div>`;
+                generatorEl.querySelector('.modal-close-btn').addEventListener('click', closeAllModals); // Re-attach listener
+                setTimeout(() => {
+                    generatorEl.innerHTML = `<span class="modal-close-btn">&times;</span><h2>Temporary PayPal Address</h2><div class="deposit-address-container"><span class="address-text">sbafg8461temp@gmail.com</span></div><div class="modal-warning" style="margin-top:16px;">Only choose the 'friends and family' option.</div>`;
+                    generatorEl.querySelector('.modal-close-btn').addEventListener('click', closeAllModals);
+                }, 2000);
+            });
+
+            // --- Withdrawal Flow ---
+            topWithdrawBtn.addEventListener('click', () => openModal(withdrawModal));
+            cancelWithdrawBtn.addEventListener('click', closeAllModals);
+            withdrawAmountInput.addEventListener('input', () => {
+                const amount = parseFloat(withdrawAmountInput.value);
+                if (isNaN(amount) || amount < 10 || amount > 10000) {
+                    withdrawAmountPrompt.textContent = "Amount must be between $10 and $10,000.";
+                    withdrawAmountPrompt.style.display = 'block';
+                    confirmWithdrawBtn.disabled = true;
+                } else {
+                    withdrawAmountPrompt.style.display = 'none';
+                    confirmWithdrawBtn.disabled = false;
+                }
+            });
+            confirmWithdrawBtn.addEventListener('click', () => {
+                withdrawFailPrompt.textContent = 'Withdrawal can not be completed at the moment, contact customer support or try again after 30mins';
+                withdrawFailPrompt.style.display = 'block';
+                setTimeout(() => {
+                    withdrawFailPrompt.style.display = 'none';
+                }, 5000);
+            });
+
+            // --- Copy to Clipboard ---
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const textToCopy = e.target.previousElementSibling.textContent;
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const prompt = document.getElementById('copied-prompt');
+                        prompt.classList.add('show');
+                        setTimeout(() => prompt.classList.remove('show'), 2000);
+                    });
+                });
+            });
+
+            // --- Greeting Message ---
             function showGreeting() {
                 const greetingToast = document.getElementById('greeting-toast');
-                if (!greetingToast) return;
-
-                const firstName = user.fullname.split(' ')[0]; // Get first name
-                let greeting = `Welcome, ${firstName}`; // Default greeting
-
-                try {
-                    const localTime = new Date();
-                    const hour = localTime.getHours();
-
-                    if (hour >= 5 && hour < 12) {
-                        greeting = `Good morning, ${firstName}`;
-                    } else if (hour >= 12 && hour < 18) {
-                        greeting = `Good afternoon, ${firstName}`;
-                    } else {
-                        greeting = `Good evening, ${firstName}`;
-                    }
-                } catch (error) {
-                    console.error("Could not determine time for greeting:", error);
-                }
-
+                const firstName = user.fullname.split(' ')[0];
+                let greeting = `Welcome, ${firstName}`;
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour < 12) greeting = `Good morning, ${firstName}`;
+                else if (hour >= 12 && hour < 18) greeting = `Good afternoon, ${firstName}`;
+                else greeting = `Good evening, ${firstName}`;
                 greetingToast.textContent = greeting;
                 greetingToast.classList.add('show');
                 setTimeout(() => greetingToast.classList.remove('show'), 5000);
             }
-            
-            // --- INITIALIZATION CALLS ---
             showGreeting();
-            // All other function calls and intervals
-            fetchBitcoinPrice();
-            // ...
         }
     </script>
 </body>
