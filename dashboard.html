@@ -97,17 +97,19 @@
         .asset-balance { font-size: 14px; color: var(--secondary-text); margin-top: 4px; }
         .asset-item .fa-chevron-right { color: var(--secondary-text); font-size: 14px; margin-left: auto; }
         
-        /* MODIFIED: Crypto Grid Styles */
-        .crypto-section { margin-top: 24px; margin-bottom: 24px; }
-        .crypto-section h2 { font-size: 20px; margin-bottom: 16px; }
-        .crypto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .crypto-card { background-color: var(--surface-dark); padding: 16px; border-radius: 12px; }
-        .crypto-card .title { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-        .crypto-card .logo { width: 24px; height: 24px; }
-        .crypto-card .name { font-size: 16px; font-weight: 600; }
-        .crypto-card .price { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
-        .crypto-card .change { font-size: 14px; font-weight: 500; }
+        .manage-button { width: 100%; background-color: var(--surface-light); color: var(--primary-text); border: none; padding: 16px; font-size: 16px; font-weight: bold; border-radius: 8px; margin-top: 16px; cursor: pointer; }
         
+        /* NEW: Crypto Market Styles */
+        .crypto-market-section { margin-top: 24px; }
+        .crypto-market-section h2 { font-size: 20px; margin-bottom: 16px; padding-left: 8px; }
+        .crypto-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .crypto-card { display: flex; flex-direction: column; gap: 8px; background-color: var(--surface-dark); padding: 16px; border-radius: 12px; }
+        .crypto-card-header { display: flex; align-items: center; gap: 8px; }
+        .crypto-logo { width: 24px; height: 24px; }
+        .crypto-symbol { font-size: 16px; font-weight: 600; text-transform: uppercase; }
+        .crypto-price { font-size: 18px; font-weight: 500; }
+        .crypto-change { font-size: 14px; font-weight: 500; }
+
         .positive { color: var(--positive-green); }
         .negative { color: var(--negative-red); }
 
@@ -136,10 +138,7 @@
         
         .sidebar-list-item .item-info { padding-left: 16px; }
         .sidebar-list-item .item-name { font-size: 14px; word-break: break-all; }
-        .transaction-view .message { padding: 20px; text-align: center; font-size: 16px; }
-        /* MODIFIED: Green color for successful transaction */
-        .transaction-view .transaction-item { padding: 20px; text-align: center; font-size: 16px; color: var(--positive-green); font-weight: 500;}
-
+        .transaction-view .message, .transaction-view .transaction-item { padding: 20px; text-align: center; font-size: 16px; }
         .vip-icon.bronze { color: var(--bronze); } .vip-icon.silver { color: var(--silver); } .vip-icon.gold { color: var(--gold); } .vip-icon.platinum { color: var(--platinum); } .vip-icon.diamond { color: var(--diamond); }
         .vip-list-item .item-info { font-size: 14px; }
         .modal-warning { background-color: var(--warning-bg); color: var(--warning-text); padding: 12px; border-radius: 8px; font-size: 14px; line-height: 1.4; margin-bottom: 20px; border: 1px solid var(--warning-text); }
@@ -191,35 +190,19 @@
                 </div>
         
                 <hr style="border-color: var(--border-color); border-style: solid; margin: 32px 0;">
+        
+                <section class="watchlist-section">
+                    <button id="manage-assets-btn" class="manage-button">Manage your assets</button>
+                </section>
 
-                <section class="crypto-section">
+                <section class="crypto-market-section">
                     <h2>Markets</h2>
                     <div id="crypto-grid" class="crypto-grid">
                         </div>
                 </section>
-        
-                <hr style="border-color: var(--border-color); border-style: solid; margin: 32px 0;">
-
-                <section class="watchlist-section">
-                    <button id="manage-assets-btn" class="manage-button">Manage your assets</button>
-                </section>
             </div>
             
-            <div id="sidebar-modal" class="modal sidebar"></div>
-            <div id="pending-tx-modal" class="modal sidebar"><div class="modal-content transaction-view"><span class="modal-close-btn">&times;</span><h2>Pending Transactions</h2><p class="message">You have no pending transactions.</p></div></div>
-            <div id="successful-tx-modal" class="modal sidebar"><div class="modal-content transaction-view"><span class="modal-close-btn">&times;</span><h2>Successful Transactions</h2><p class="transaction-item">$300.00 - Welcome Bonus</p></div></div>
-            <div id="join-vip-modal" class="modal sidebar"></div>
-            <div id="manage-assets-modal" class="modal sidebar"></div>
-            <div id="deposit-chooser-modal" class="modal slide-from-top"></div>
-            <div id="crypto-deposit-modal" class="modal slide-from-right"></div>
-            <div id="btc-deposit-modal" class="modal"></div>
-            <div id="cash-deposit-modal" class="modal slide-from-right"></div>
-            <div id="wire-transfer-modal" class="modal"></div>
-            <div id="paypal-modal" class="modal"></div>
-            <div id="withdraw-modal" class="modal slide-from-top"></div>
-            <div id="copied-prompt" class="greeting-toast" style="background-color: var(--positive-green);">Copied!</div>
-            
-        </div>
+            </div>
     </div>
 
     <script>
@@ -237,18 +220,9 @@
         function initializeDashboard(user) {
             // --- Get All DOM Elements ---
             const allModals = document.querySelectorAll('.modal');
-            const topBalanceAmountEl = document.querySelector('.top-balance-amount');
-            const confirmWithdrawBtn = document.getElementById('confirm-withdraw-btn');
-            const withdrawAmountInput = document.getElementById('withdraw-amount');
-            const withdrawAmountPrompt = document.getElementById('withdraw-amount-prompt');
-            
-            // --- MODIFIED: Crypto Grid Element
-            const cryptoGrid = document.getElementById('crypto-grid');
+            const cryptoGrid = document.getElementById('crypto-grid'); // Get the new grid container
 
-            // --- Other element queries from your previous code...
-            const menuBtn = document.getElementById('menu-btn');
-            // ... (rest of your querySelectors)
-
+            // ... (All your other element selections)
 
             // --- Modal Control Functions ---
             const openModal = (modal) => {
@@ -257,84 +231,53 @@
             const closeAllModals = () => allModals.forEach(m => m.classList.remove('show'));
             document.querySelectorAll('.modal-close-btn').forEach(btn => btn.addEventListener('click', closeAllModals));
 
-            
-            // --- MODIFIED: Crypto Price Fetching Logic ---
-            async function fetchCryptoData() {
+            // ... (All your other event listeners and functions)
+
+            // --- NEW: Crypto Price Fetching Logic ---
+            async function fetchCryptoPrices() {
                 if (!cryptoGrid) return;
-                const coinIds = 'bitcoin,ethereum,tether,solana,binancecoin,ripple';
-                const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinIds}&order=market_cap_desc&per_page=6&page=1&sparkline=false`;
                 
+                const coinIds = 'bitcoin,ethereum,tether,solana,binancecoin,ripple';
+                const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinIds}&order=market_cap_desc&per_page=6&page=1&sparkline=false&price_change_percentage=24h`;
+
                 try {
                     const response = await fetch(url);
+                    if (!response.ok) throw new Error('Network response was not ok');
                     const data = await response.json();
-                    
-                    cryptoGrid.innerHTML = ''; // Clear previous content
+
+                    cryptoGrid.innerHTML = ''; // Clear old cards
                     data.forEach(coin => {
-                        const change = coin.price_change_percentage_24h;
+                        const price = coin.current_price;
+                        const change = coin.price_change_percentage_24h_in_currency;
                         const changeClass = change >= 0 ? 'positive' : 'negative';
-                        const sign = change >= 0 ? '+' : '';
 
                         const cardHTML = `
                             <div class="crypto-card">
-                                <div class="title">
-                                    <img src="${coin.image}" alt="${coin.name}" class="logo">
-                                    <span class="name">${coin.symbol.toUpperCase()}</span>
+                                <div class="crypto-card-header">
+                                    <img src="${coin.image}" alt="${coin.name}" class="crypto-logo">
+                                    <span class="crypto-symbol">${coin.symbol}</span>
                                 </div>
-                                <div class="price">$${coin.current_price.toLocaleString()}</div>
-                                <div class="change ${changeClass}">${sign}${change.toFixed(2)}%</div>
+                                <div class="crypto-price">$${price.toLocaleString('en-US')}</div>
+                                <div class="crypto-change ${changeClass}">
+                                    ${change.toFixed(2)}%
+                                </div>
                             </div>
                         `;
                         cryptoGrid.innerHTML += cardHTML;
                     });
                 } catch (error) {
-                    console.error("Error fetching crypto data:", error);
-                    cryptoGrid.innerHTML = '<p>Could not load market data.</p>';
+                    console.error("Failed to fetch crypto prices:", error);
+                    cryptoGrid.innerHTML = `<p style="grid-column: 1 / -1;">Could not load market data.</p>`;
                 }
             }
 
-            
-            // --- MODIFIED: Withdrawal Flow ---
-            function validateWithdrawal() {
-                const mainBalance = parseFloat(topBalanceAmountEl.textContent.replace(/[$,]/g, ''));
-                const amount = parseFloat(withdrawAmountInput.value);
-                
-                let isValid = true;
-                let message = "";
-
-                if (isNaN(amount) || amount < 10 || amount > 10000) {
-                    message = "Amount must be between $10 and $10,000.";
-                    isValid = false;
-                } else if (amount > mainBalance) {
-                    message = "Insufficient balance for this withdrawal.";
-                    isValid = false;
-                }
-
-                withdrawAmountPrompt.textContent = message;
-                withdrawAmountPrompt.style.display = message ? 'block' : 'none';
-                confirmWithdrawBtn.disabled = !isValid;
-            }
-            
-            withdrawAmountInput.addEventListener('input', validateWithdrawal);
-            topWithdrawBtn.addEventListener('click', () => {
-                // Ensure validation runs when modal opens, in case balance changed
-                validateWithdrawal(); 
-                openModal(withdrawModal);
-            });
-            // ... (rest of your withdrawal logic)
-            
-
-            // --- ALL OTHER EVENT LISTENERS AND FUNCTIONS FROM YOUR PREVIOUS CODE ---
-            // e.g., menuBtn.addEventListener, logoutBtn.addEventListener, deposit flows, etc.
-            // They are assumed to be here and correct.
-            
-            
-            // --- INITIALIZATION CALLS ---
+            // --- INITIALIZATION ---
             function showGreeting() {
                 // ... (your existing greeting function)
             }
             showGreeting();
-            fetchCryptoData(); // Fetch prices on page load
-            setInterval(fetchCryptoData, 300000); // Refresh every 5 minutes
+            fetchCryptoPrices(); // Fetch on initial load
+            setInterval(fetchCryptoPrices, 300000); // Refresh every 5 minutes
         }
     </script>
 </body>
